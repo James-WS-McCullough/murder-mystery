@@ -13,9 +13,13 @@ export const StoryReader = ({
   onStoryComplete,
 }: StoryReaderProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  setInStoryReader(true);
   const [typedString, setTypedString] = useState<string>("");
   const typeWriterRef = useRef<NodeJS.Timeout>();
+
+  useEffect(() => {
+    setInStoryReader(true);
+    return () => setInStoryReader(false);
+  }, [setInStoryReader]);
 
   useEffect(() => {
     if (!introductionText) {

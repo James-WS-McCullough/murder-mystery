@@ -109,19 +109,18 @@ export const generateInvestigationStory = async ({
 
         break;
       case generateType.suspect:
+        // Skip for now
+        // Generate suspect story
+        // const updatedInvestigationStory2 = await generateSuspectStory({
+        //   mysteryData,
+        //   investigationStory,
+        //   name: toGenerateItem.name,
+        // });
 
-      // Skip for now
-      // Generate suspect story
-      // const updatedInvestigationStory2 = await generateSuspectStory({
-      //   mysteryData,
-      //   investigationStory,
-      //   name: toGenerateItem.name,
-      // });
-
-      // // Update investigationStory
-      // setInvestigationStory(updatedInvestigationStory2);
-      // investigationStory = updatedInvestigationStory2;
+        // // Update investigationStory
+        // setInvestigationStory(updatedInvestigationStory2);
+        // investigationStory = updatedInvestigationStory2;
+        break;
     }
-    break;
   }
 };

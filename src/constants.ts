@@ -119,6 +119,23 @@ export const popularPairs: DetectiveDetails[] = [
         "Younger than Barnaby, Dark hair, Often in uniform or suit",
     },
   },
+  {
+    detective: {
+      name: "Detective Grimoire",
+      pronouns: "he/him",
+      characteristics: "Eccentric, Sharp-witted, Theatrical",
+      visualDescription:
+        "Pointy brown hat, Long brown coat, Expressive and animated",
+    },
+    sidekick: {
+      name: "Sally",
+      pronouns: "she/her",
+      characteristics: "Enthusiastic, Scientifically-minded, Resourceful",
+      visualDescription:
+        "Tall, Bright and cheerful demeanor, Often carrying research notes",
+    },
+    // Detective Grimoire and Sally are from "Tangle Tower".
+  },
 ];
 
 export const pronownDropdownOptions = [

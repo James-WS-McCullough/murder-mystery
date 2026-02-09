@@ -1,34 +1,38 @@
-import OpenAI from "openai";
+import Anthropic from "@anthropic-ai/sdk";
 import { prevMessagesProps } from "../types";
 
-const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+const anthropic = new Anthropic({
+  apiKey: process.env.REACT_APP_ANTHROPIC_API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
 type sendChatMessageProps = {
   message: string;
   prevMessages?: prevMessagesProps;
+  model?: string;
 };
 
 export const sendChatMessage = async ({
   message,
   prevMessages = [],
+  model = "claude-sonnet-4-5-20250929",
 }: sendChatMessageProps) => {
   prevMessages.push({
     role: "user",
     content: message,
   });
 
-  const chatCompletion = await openai.chat.completions.create({
+  const response = await anthropic.messages.create({
+    model,
+    max_tokens: 4096,
     messages: prevMessages,
-    model: "gpt-3.5-turbo",
   });
 
-  if (chatCompletion.choices[0].message.content != null) {
+  const contentBlock = response.content[0];
+  if (contentBlock.type === "text" && contentBlock.text != null) {
     prevMessages.push({
       role: "assistant",
-      content: chatCompletion.choices[0].message.content,
+      content: contentBlock.text,
     });
 
     return prevMessages;

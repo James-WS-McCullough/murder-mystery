@@ -16,6 +16,8 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
+  Box,
+  Text,
 } from "@chakra-ui/react";
 import { Character, DetectiveDetails, mysteryDataType } from "../types";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
@@ -233,19 +235,39 @@ const DetectiveSetup = ({
         <ModalContent>
           <ModalHeader>Popular Detective and Sidekick Pairs</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <VStack>
+          <ModalBody overflowY="auto" maxH="70vh">
+            <VStack spacing={3} pb={4}>
               {popularPairs.map((pair) => (
-                <Button
+                <Box
                   key={pair.detective.name}
+                  w="100%"
+                  p={4}
+                  border="1px solid"
+                  borderColor="gray.200"
+                  borderRadius="md"
+                  cursor="pointer"
+                  _hover={{ bg: "blue.50", borderColor: "blue.300" }}
+                  transition="background 0.15s, border-color 0.15s"
                   onClick={() => {
                     handlePrepopulate(pair);
                     onListClose();
                   }}
                 >
-                  {pair.detective.name}{" "}
-                  {pair.sidekick && "and " + pair.sidekick?.name}
-                </Button>
+                  <Text fontWeight="bold" fontSize="md">
+                    {pair.detective.name}
+                    {pair.sidekick && ` & ${pair.sidekick.name}`}
+                  </Text>
+                  <Text fontSize="sm" color="gray.600">
+                    {pair.detective.characteristics}
+                    {pair.sidekick &&
+                      ` | ${pair.sidekick.characteristics}`}
+                  </Text>
+                  <Text fontSize="xs" color="gray.400" mt={1}>
+                    {pair.detective.visualDescription}
+                    {pair.sidekick &&
+                      ` · ${pair.sidekick.visualDescription}`}
+                  </Text>
+                </Box>
               ))}
             </VStack>
           </ModalBody>

@@ -1,12 +1,18 @@
 import { generateMysteryPrompts } from "../constants/generateMysteryPrompts";
 import { preGeneratedStory } from "../constants/preGeneratedStory";
 import { mysteryDataType, prevMessagesProps } from "../types";
+import {
+  getRandomMysteryElements,
+  buildRandomHints,
+} from "./getRandomElements";
 import { sendPromptForObject } from "./sendPromptForObject";
 import {
   flattenMatchingKeys,
   isValidCharacterDetails,
   isValidfurtherDetails,
 } from "./validFormatter";
+
+const MYSTERY_MODEL = "claude-opus-4-6";
 
 type generateMysteryProps = {
   mysteryData: Partial<mysteryDataType>;
@@ -15,19 +21,20 @@ type generateMysteryProps = {
 export const generateMystery = async ({
   mysteryData,
 }: generateMysteryProps) => {
-  // If localhost, use pregenerated story
-  if (process.env.NODE_ENV === "development") {
-    return preGeneratedStory as mysteryDataType;
-  }
+  const randomElements = getRandomMysteryElements();
+  const randomHints = buildRandomHints(randomElements);
+  console.log("Random mystery elements:", randomElements);
 
   let newMysteryData = mysteryData;
   do {
     const characterDetailsPrompt = `${generateMysteryPrompts.promptIntro}
           ${JSON.stringify(newMysteryData)}
+          ${randomHints}
           ${generateMysteryPrompts.characterDetailsPrompt}`;
     const characterDetails = await sendPromptForObject({
       objectName: "characterDetails",
       prompt: characterDetailsPrompt,
+      model: MYSTERY_MODEL,
     });
     // if (!isValidCharacterDetails(characterDetails)) {
     //   console.log("Invalid character details");
@@ -42,10 +49,12 @@ export const generateMystery = async ({
   do {
     const furtherDetailsPrompt = `${generateMysteryPrompts.promptIntro}
        ${JSON.stringify(newMysteryData)}
+        ${randomHints}
         ${generateMysteryPrompts.furtherDetailsPrompt}`;
     const furtherDetails = await sendPromptForObject({
       objectName: "furtherDetails",
       prompt: furtherDetailsPrompt,
+      model: MYSTERY_MODEL,
     });
     // if (!isValidfurtherDetails(furtherDetails)) {
     //   console.log("Invalid further details");
@@ -63,6 +72,7 @@ export const generateMystery = async ({
   const events = await sendPromptForObject({
     objectName: "events",
     prompt: eventsPrompt,
+    model: MYSTERY_MODEL,
   });
   newMysteryData = { ...newMysteryData, events: events };
 
@@ -72,6 +82,7 @@ export const generateMystery = async ({
   const clues = await sendPromptForObject({
     objectName: "clues",
     prompt: cluesPrompt,
+    model: MYSTERY_MODEL,
   });
 
   newMysteryData = { ...newMysteryData, clues: clues };
@@ -82,6 +93,7 @@ export const generateMystery = async ({
   const redHerrings = await sendPromptForObject({
     objectName: "redHerrings",
     prompt: redHerringsPrompt,
+    model: MYSTERY_MODEL,
   });
   newMysteryData = { ...newMysteryData, redHerrings: redHerrings };
 
@@ -91,6 +103,7 @@ export const generateMystery = async ({
   const locations = await sendPromptForObject({
     objectName: "locations",
     prompt: locationPrompt,
+    model: MYSTERY_MODEL,
   });
 
   newMysteryData = { ...newMysteryData, locations: locations };
@@ -101,6 +114,7 @@ export const generateMystery = async ({
   const introduction = await sendPromptForObject({
     objectName: "introduction",
     prompt: introductionPrompt,
+    model: MYSTERY_MODEL,
   });
   newMysteryData = { ...newMysteryData, introduction: introduction };
 

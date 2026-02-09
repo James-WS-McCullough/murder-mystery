@@ -63,7 +63,7 @@ export type furtherDetails = {
   motive: string;
   location: string;
   murderMeans: string;
-  aftermarth: string;
+  aftermath: string;
   discovery: string;
 };
 

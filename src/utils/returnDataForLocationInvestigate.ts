@@ -12,20 +12,21 @@ export const returnDataForLocationInvestigate = ({
   isCrimeScene,
 }: returnDataForLocationInvestigateProps) => {
   const currentLocationData = mysteryData.locations.locationList.find(
-    (locationData) => locationData.location == location
+    (locationData) =>
+      locationData.location.toLowerCase() === location.toLowerCase()
   );
-  const cluesPresent = mysteryData.clues.clueList.find(
-    (clueData) => clueData.location == location
+  const cluesPresent = mysteryData.clues.clueList.filter(
+    (clueData) => clueData.location === location
   );
 
   const murderData = {
     murderMeans: mysteryData.furtherDetails.murderMeans,
-    aftermarth: mysteryData.furtherDetails.aftermarth,
+    aftermath: mysteryData.furtherDetails.aftermath,
     discovery: mysteryData.furtherDetails.discovery,
   };
 
-  if (currentLocationData === undefined || cluesPresent === undefined)
-    throw new Error("Invalid location or character data");
+  if (currentLocationData === undefined)
+    throw new Error("Invalid location data");
 
   return {
     DetectiveDetails: mysteryData.DetectiveDetails,

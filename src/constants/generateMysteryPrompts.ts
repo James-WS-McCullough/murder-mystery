@@ -10,7 +10,7 @@ export const generateMysteryPrompts = {
     "pronouns": "he/him",
     "characteristics:":"Heavy drinker, argumentative",
     "visualDescription":"David is 53 wears an undersized black suit over his beer belly, and a bristly gray mustache beneath his nose, along with his fading gray hair."
-    "presenseReason":"Was invited to the dinner party by his friend Joshua."
+    "presenceReason":"Was invited to the dinner party by his friend Joshua."
     }
     
     Now, please generate the objects in a JSON object. For example:
@@ -25,7 +25,7 @@ export const generateMysteryPrompts = {
     motive: The reason why the murderer committed the murder.
     location: The room or building where the murder took place.
     murder means: The way the murder was executed. This can include the murder weapon, details of timings, or even an accident.
-    aftermarth: The imidiet aftermath after the murder occurs. Does the murderer hide the weapon, or make a run for it? Do they pass by anyone else and need to make excuses?
+    aftermath: The imidiet aftermath after the murder occurs. Does the murderer hide the weapon, or make a run for it? Do they pass by anyone else and need to make excuses?
     discovery: Who first discovers the body? How does it get reported to the police / detectives?
     
     Please return as a JSON object formatted like this:
@@ -34,7 +34,7 @@ export const generateMysteryPrompts = {
     "motive": "Kevin had lent him some money in the past, and was threatening him for it back. David killed him in a drunken rage."
     "location": "The Library"
     "murderMeans": "This murder was unplanned. He simply smashed the bottle in his hands over Kevin's head, and Kevin died due to the blunt trauma."
-    "aftermarth": "After realising he had just killed Kevin, David moved the body to the floor and placed the glass in the body's hands to make it seem like an accident. left through the library window and out through the garden to avoid being seen."
+    "aftermath": "After realising he had just killed Kevin, David moved the body to the floor and placed the glass in the body's hands to make it seem like an accident. left through the library window and out through the garden to avoid being seen."
     "discovery": "Isabella, the maid, discovered the body and rang the police."
     }
     

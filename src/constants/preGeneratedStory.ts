@@ -81,10 +81,10 @@ export const preGeneratedStory = {
     murderer: "Joshua Sinclair",
     motive:
       "Emily Lancaster had discovered some embezzlement activities done by Joshua Sinclair, which threatened his reputation and financial status. To protect himself, Joshua decided to eliminate her.",
-    location: "Joshua Sinclair's mansion",
+    location: "Joshua Sinclair's Mansion",
     murderMeans:
       "During their conversation in his private study, Joshua poisoned Emily's drink with a lethal dose of a rare, undetectable poison. Emily unknowingly consumed it, resulting in her death.",
-    aftermarth:
+    aftermath:
       "After the murder, Joshua meticulously cleaned the study, removing any traces of the poison. He disposed of the remaining poison vial in a hidden compartment in his desk. He then joined the post-event gathering to establish an alibi.",
     discovery:
       "Dr. John Watson, while examining Emily's body, noticed unusual symptoms that hinted at poisoning. He immediately informed Detective Sherlock Holmes, who took charge of the investigation.",

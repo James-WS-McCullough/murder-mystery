@@ -10,15 +10,16 @@ export const returnDataForLocationEntry = ({
   location,
 }: returnDataForLocationEntryProps) => {
   const currentLocationData = mysteryData.locations.locationList.find(
-    (locationData) => locationData.location === location
+    (locationData) =>
+      locationData.location.toLowerCase() === location.toLowerCase()
   );
-  const charactersPresent = mysteryData.characterDetails.suspects.find(
+  const charactersPresent = mysteryData.characterDetails.suspects.filter(
     (characterData) =>
       currentLocationData?.charactersPresent.includes(characterData.name)
   );
 
-  if (!currentLocationData || !charactersPresent)
-    throw new Error("Invalid location or character data");
+  if (!currentLocationData)
+    throw new Error("Invalid location data");
 
   return {
     DetectiveDetails: mysteryData.DetectiveDetails,
